@@ -211,9 +211,29 @@
       position: relative;
       width: 190px;
       height: 190px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s;
+      will-change: transform;
+    }
+
+    .chart-wrap:hover {
+      transform: perspective(700px) rotateX(28deg) rotateY(-12deg) scale(1.04);
+      filter: drop-shadow(0 18px 22px rgba(124,58,237,0.35)) drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+    }
+
+    .chart-wrap:hover .chart-center {
+      transform: translateZ(20px);
+      opacity: 0.2;
     }
 
     .chart-center {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    }
+
+    .chart-center-inner {
       position: absolute;
       inset: 0;
       display: flex;
@@ -583,6 +603,8 @@
       transform: translateY(-2px);
     }
 
+    .tech-icon--invert { filter: invert(1); }
+
     .gh-link {
       display: inline-flex;
       align-items: center;
@@ -656,8 +678,10 @@
         <div class="chart-wrap">
           <canvas id="techChart"></canvas>
           <div class="chart-center">
-            <span class="chart-number">6</span>
-            <span class="chart-sublabel" id="chart-sub">proyectos</span>
+            <div class="chart-center-inner">
+              <span class="chart-number">6</span>
+              <span class="chart-sublabel" id="chart-sub">proyectos</span>
+            </div>
           </div>
         </div>
         <div class="chart-legend" id="chartLegend"></div>
@@ -679,7 +703,7 @@
       <div class="footer-right">
         <div class="tech-icons">
           <img class="tech-icon" title="Python"     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg">
-          <img class="tech-icon" title="Rust"       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg">
+          <img class="tech-icon tech-icon--invert" title="Rust" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg">
           <img class="tech-icon" title="JavaScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg">
           <img class="tech-icon" title="TypeScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg">
           <img class="tech-icon" title="HTML"       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg">
@@ -699,10 +723,10 @@
     const COLORS = {
       Rust:       '#dea584',
       TypeScript: '#3178c6',
-      JavaScript: '#f1e05a',
-      Python:     '#3572A5',
-      HTML:       '#e34c26',
-      CSS:        '#563d7c',
+      JavaScript: '#86efac',
+      Python:     '#ffd43b',
+      HTML:       '#fb923c',
+      CSS:        '#67e8f9',
       EJS:        '#a91e50',
     };
 
@@ -941,13 +965,15 @@
             data: sorted.map(([, v]) => v),
             backgroundColor: sorted.map(([k]) => COLORS[k] || '#888'),
             borderWidth: 0,
-            hoverBorderWidth: 2,
-            hoverBorderColor: 'rgba(255,255,255,0.25)',
+            hoverBorderWidth: 3,
+            hoverBorderColor: 'rgba(255,255,255,0.35)',
+            hoverOffset: 18,
           }]
         },
         options: {
           cutout: '74%',
           animation: { animateRotate: true, duration: 900 },
+          layout: { padding: 20 },
           plugins: {
             legend: { display: false },
             tooltip: {
