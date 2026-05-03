@@ -714,6 +714,7 @@
           en: 'Amazon.es price tracker with price history charts and email alerts when prices drop.'
         },
         url: 'https://ojoalprecio.com',
+        img: 'screenshots/ojoalprecio.png',
         langs: [
           { name: 'TypeScript', bytes: 170483 },
           { name: 'EJS',        bytes: 151479 },
@@ -728,6 +729,7 @@
           en: 'Combines AESA airspace data and real-time weather to tell you if you can legally and safely fly your drone anywhere on the map.'
         },
         url: 'https://canidrone.f1madrid.win',
+        img: 'screenshots/canidrone.png',
         langs: [
           { name: 'HTML',       bytes: 57087 },
           { name: 'JavaScript', bytes: 38000 },
@@ -741,6 +743,7 @@
           en: '2-player real-time online Tetris. Game engine written in Rust and compiled to WebAssembly. Synced via WebSockets with Axum.'
         },
         url: 'https://tetris.f1madrid.win',
+        img: 'screenshots/tetris.png',
         langs: [
           { name: 'Rust',       bytes: 39754 },
           { name: 'JavaScript', bytes: 27437 },
@@ -755,6 +758,7 @@
           en: 'GitHub public profile stats dashboard. Visualize commits, languages, repos and compare two profiles at a glance.'
         },
         url: 'https://glancehub.f1madrid.win',
+        img: 'screenshots/glancehub.png',
         langs: [
           { name: 'JavaScript', bytes: 48885 },
           { name: 'CSS',        bytes: 11024 },
@@ -768,6 +772,7 @@
           en: 'Web app to dress up and customize kawaii Harry Potter-style dolls with accessories. 100% built for my daughters as they request new things.'
         },
         url: 'https://munecos.f1madrid.win',
+        img: 'screenshots/munecos.png',
         langs: [
           { name: 'JavaScript', bytes: 428981 },
           { name: 'CSS',        bytes: 25878  },
@@ -782,6 +787,7 @@
           en: 'Private YouTube to MP3 converter with a built-in player. Personal use only.'
         },
         url: 'https://yt2mp3.f1madrid.win',
+        img: 'screenshots/yt2mp3.png',
         langs: [
           { name: 'HTML',       bytes: 210131 },
           { name: 'Python',     bytes: 171526 },
@@ -871,7 +877,6 @@
     }
 
     function renderProjects() {
-      const SHOT = 'https://image.thum.io/get/width/640/crop/460/noanimate/';
       document.getElementById('projectsGrid').innerHTML = PROJECTS.map((p, i) =>
         `<div class="card-flip-container">
           <div class="card-inner" id="card-${i}">
@@ -894,7 +899,7 @@
               <div class="screenshot-wrap">
                 <div class="screenshot-loading"><span class="spinner"></span></div>
                 <img class="screenshot-img"
-                     src="${SHOT}${p.url}"
+                     src="${p.img}"
                      alt="${p.name} preview"
                      onload="this.previousElementSibling.style.display='none'">
               </div>
@@ -963,8 +968,7 @@
 
     // Preload all screenshots immediately so they're ready on first flip
     (function preload() {
-      const SHOT = 'https://image.thum.io/get/width/640/crop/460/noanimate/';
-      PROJECTS.forEach(p => { new Image().src = SHOT + p.url; });
+      PROJECTS.forEach(p => { new Image().src = p.img; });
     })();
   </script>
 </body>
