@@ -731,9 +731,9 @@
       <div>
         <div class="hero-eyebrow" id="hero-eyebrow">Proyectos personales</div>
         <h1 id="hero-title">Todo lo que<br>construyo en<br><span class="gradient">mi tiempo libre</span></h1>
-        <p class="hero-desc" id="hero-desc">Proyectos desplegados desde una Raspberry Pi 5 en casa, accesibles globalmente a través de Cloudflare Tunnel.</p>
+        <p class="hero-desc" id="hero-desc">Proyectos personales, la mayoría autoalojados entre una Raspberry Pi 5 y la nube, accesibles globalmente a través de Cloudflare Tunnel.</p>
         <div class="badges">
-          <span class="badge"><span class="live-dot"></span> <span id="badge-live">7 en producción</span></span>
+          <span class="badge"><span class="live-dot"></span> <span id="badge-live">8 en producción</span></span>
           <span class="badge">🍓 Raspberry Pi 5</span>
           <span class="badge">🐳 Docker</span>
           <span class="badge">☁️ Cloudflare</span>
@@ -744,7 +744,7 @@
           <canvas id="techChart"></canvas>
           <div class="chart-center">
             <div class="chart-center-inner">
-              <span class="chart-number">7</span>
+              <span class="chart-number">8</span>
               <span class="chart-sublabel" id="chart-sub">proyectos</span>
             </div>
           </div>
@@ -793,6 +793,9 @@
       HTML:       '#fb923c',
       CSS:        '#67e8f9',
       EJS:        '#a91e50',
+      Swift:      '#f05138',
+      'Objective-C': '#438eff',
+      Shell:      '#89e051',
     };
 
     const PROJECTS = [
@@ -897,6 +900,22 @@
           { name: 'JavaScript', bytes: 82949  },
           { name: 'CSS',        bytes: 8390   },
         ]
+      },
+      {
+        name: 'BrightnessJustWorks',
+        desc: {
+          es: 'Utilidad de la barra de menús de macOS que redirige las teclas de brillo (F1/F2) a la pantalla donde está el cursor, en vez de siempre a la integrada. Controla el panel interno y monitores externos vía DDC/CI en Apple Silicon.',
+          en: 'macOS menu bar utility that routes the brightness keys (F1/F2) to whichever display your cursor is on, instead of always the built-in one. Drives the internal panel and external monitors via DDC/CI on Apple Silicon.'
+        },
+        url: 'https://github.com/davic80/BrightnessJustWorks/releases/latest',
+        img: 'screenshots/brightnessjustworks.png',
+        cta: { es: 'Descargar ↓', en: 'Download ↓' },
+        langs: [
+          { name: 'Swift',       bytes: 50649 },
+          { name: 'Objective-C', bytes: 4836  },
+          { name: 'Shell',       bytes: 2133  },
+          { name: 'HTML',        bytes: 620   },
+        ]
       }
     ];
 
@@ -904,8 +923,8 @@
       es: {
         eyebrow:    'Proyectos personales',
         title:      'Todo lo que<br>construyo en<br><span class="gradient">mi tiempo libre</span>',
-        desc:       'Proyectos desplegados desde una Raspberry Pi 5 en casa, accesibles globalmente a través de Cloudflare Tunnel.',
-        badgeLive:  '7 en producción',
+        desc:       'Proyectos personales, la mayoría autoalojados entre una Raspberry Pi 5 y la nube, accesibles globalmente a través de Cloudflare Tunnel.',
+        badgeLive:  '8 en producción',
         chartSub:   'proyectos',
         sectionLbl: 'proyectos',
         previewBtn: '👁 Previsualizar',
@@ -916,8 +935,8 @@
       en: {
         eyebrow:    'Personal projects',
         title:      'Everything I<br>build in my<br><span class="gradient">free time</span>',
-        desc:       'Projects deployed from a Raspberry Pi 5 at home, globally accessible through Cloudflare Tunnel.',
-        badgeLive:  '7 live',
+        desc:       'Personal projects, mostly self-hosted between a Raspberry Pi 5 and the cloud, globally accessible through Cloudflare Tunnel.',
+        badgeLive:  '8 live',
         chartSub:   'projects',
         sectionLbl: 'projects',
         previewBtn: '👁 Preview',
@@ -947,7 +966,7 @@
         el.textContent = PROJECTS[i].desc[l];
       });
       document.querySelectorAll('.visit-btn').forEach(btn => {
-        btn.textContent = t.visitBtn;
+        btn.textContent = ctaLabel(+btn.dataset.idx);
       });
       document.querySelectorAll('.preview-btn').forEach(btn => {
         btn.textContent = t.previewBtn;
@@ -998,6 +1017,11 @@
       }).join('');
     }
 
+    function ctaLabel(i) {
+      const p = PROJECTS[i];
+      return p.cta ? p.cta[lang] : I18N[lang].visitBtn;
+    }
+
     function renderProjects() {
       document.getElementById('projectsGrid').innerHTML = PROJECTS.map((p, i) =>
         `<div class="card-flip-container">
@@ -1013,7 +1037,7 @@
               <div class="lang-legend">${buildLangLegend(p.langs)}</div>
               <div class="card-actions">
                 <button class="preview-btn" onclick="flipCard(${i})">${I18N[lang].previewBtn}</button>
-                <a href="${p.url}" target="_blank" rel="noopener" class="visit-btn">${I18N[lang].visitBtn}</a>
+                <a href="${p.url}" target="_blank" rel="noopener" class="visit-btn" data-idx="${i}">${ctaLabel(i)}</a>
               </div>
             </div>
             <div class="card card-back">
@@ -1028,7 +1052,7 @@
               </div>
               <div class="card-actions">
                 <button class="back-btn" onclick="flipCard(${i})">${I18N[lang].backBtn}</button>
-                <a href="${p.url}" target="_blank" rel="noopener" class="visit-btn">${I18N[lang].visitBtn}</a>
+                <a href="${p.url}" target="_blank" rel="noopener" class="visit-btn" data-idx="${i}">${ctaLabel(i)}</a>
               </div>
             </div>
           </div>
