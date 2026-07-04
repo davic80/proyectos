@@ -733,7 +733,7 @@
         <h1 id="hero-title">Todo lo que<br>construyo en<br><span class="gradient">mi tiempo libre</span></h1>
         <p class="hero-desc" id="hero-desc">Proyectos personales, la mayoría autoalojados entre una Raspberry Pi 5 y la nube, accesibles globalmente a través de Cloudflare Tunnel.</p>
         <div class="badges">
-          <span class="badge"><span class="live-dot"></span> <span id="badge-live">8 en producción</span></span>
+          <span class="badge"><span class="live-dot"></span> <span id="badge-live">12 en producción</span></span>
           <span class="badge">🍓 Raspberry Pi 5</span>
           <span class="badge">🐳 Docker</span>
           <span class="badge">☁️ Cloudflare</span>
@@ -744,7 +744,7 @@
           <canvas id="techChart"></canvas>
           <div class="chart-center">
             <div class="chart-center-inner">
-              <span class="chart-number">8</span>
+              <span class="chart-number">12</span>
               <span class="chart-sublabel" id="chart-sub">proyectos</span>
             </div>
           </div>
@@ -796,6 +796,7 @@
       Swift:      '#f05138',
       'Objective-C': '#438eff',
       Shell:      '#89e051',
+      Go:         '#00add8',
     };
 
     const PROJECTS = [
@@ -916,6 +917,60 @@
           { name: 'Shell',       bytes: 2133  },
           { name: 'HTML',        bytes: 620   },
         ]
+      },
+      {
+        name: 'ReelDown',
+        desc: {
+          es: 'Descarga vídeos y reels de Instagram pegando el enlace. Sin registro, sin anuncios, directo al MP4.',
+          en: 'Download Instagram reels and videos by pasting the link. No sign-up, no ads, straight to MP4.'
+        },
+        url: 'https://reeldown.ojoalprecio.com',
+        img: 'screenshots/reeldown.png',
+        langs: [
+          { name: 'JavaScript', bytes: 22994 },
+          { name: 'CSS',        bytes: 8225  },
+          { name: 'HTML',       bytes: 7702  },
+        ]
+      },
+      {
+        name: 'Gasolineras España',
+        desc: {
+          es: 'Mapa de gasolineras en España con precios actualizados a diario desde datos oficiales del Ministerio. Filtra por combustible y ordena por precio o distancia.',
+          en: 'Map of Spanish gas stations with prices updated daily from official Ministry data. Filter by fuel type and sort by price or distance.'
+        },
+        url: 'https://gasolineras.ojoalprecio.com',
+        img: 'screenshots/gasolineras.png',
+        langs: [
+          { name: 'HTML', bytes: 41867 },
+        ]
+      },
+      {
+        name: 'Conocernos',
+        desc: {
+          es: 'Juego de cartas para parejas: 260 preguntas para (re)descubriros, con modo fiesta de solo retos y mazo personalizable.',
+          en: 'Card game for couples: 260 questions to (re)discover each other, with a challenges-only party mode and a customizable deck.'
+        },
+        url: 'https://conocernos.f1madrid.win',
+        img: 'screenshots/conocernos.png',
+        langs: [
+          { name: 'CSS',        bytes: 14746 },
+          { name: 'JavaScript', bytes: 14605 },
+          { name: 'HTML',       bytes: 8815  },
+          { name: 'Go',         bytes: 1914  },
+        ]
+      },
+      {
+        name: 'SiliClip',
+        desc: {
+          es: 'Fork nativo de Clipy para Apple Silicon: historial de portapapeles y gestor de snippets en la barra de menús, sin depender de Rosetta 2.',
+          en: 'Native Apple Silicon fork of Clipy: menu bar clipboard history and snippet manager, no Rosetta 2 dependency.'
+        },
+        url: 'https://github.com/davic80/SiliClip/releases/latest',
+        img: 'screenshots/siliclip.png',
+        cta: { es: 'Descargar ↓', en: 'Download ↓' },
+        langs: [
+          { name: 'Swift', bytes: 255956 },
+        ]
       }
     ];
 
@@ -924,7 +979,7 @@
         eyebrow:    'Proyectos personales',
         title:      'Todo lo que<br>construyo en<br><span class="gradient">mi tiempo libre</span>',
         desc:       'Proyectos personales, la mayoría autoalojados entre una Raspberry Pi 5 y la nube, accesibles globalmente a través de Cloudflare Tunnel.',
-        badgeLive:  '8 en producción',
+        badgeLive:  '12 en producción',
         chartSub:   'proyectos',
         sectionLbl: 'proyectos',
         previewBtn: '👁 Previsualizar',
@@ -936,7 +991,7 @@
         eyebrow:    'Personal projects',
         title:      'Everything I<br>build in my<br><span class="gradient">free time</span>',
         desc:       'Personal projects, mostly self-hosted between a Raspberry Pi 5 and the cloud, globally accessible through Cloudflare Tunnel.',
-        badgeLive:  '8 live',
+        badgeLive:  '12 live',
         chartSub:   'projects',
         sectionLbl: 'projects',
         previewBtn: '👁 Preview',
